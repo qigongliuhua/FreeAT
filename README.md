@@ -2,7 +2,7 @@
 
 ## 介绍
 AT指令库
-基于STM32 HAL库和FreeRTOS
+基于STM32 HAL库
 
 ## 使用说明
 ```c
