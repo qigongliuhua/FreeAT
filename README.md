@@ -8,49 +8,116 @@ AT指令库
 ```c
 #include "at.h"
 
-atStatus atIsInConfig(void);            //是否在设置状态
-atStatus atStartConfig(void);           //进入设置状态
-atStatus atStartCommunication(void);    //进入通讯状态
-atStatus atReboot(void);                //重启
-atStatus atRecovery(void);              //恢复出厂设置
-atStatus atClear(void);                 //恢复出厂设置
-atStatus atOpenEcho(void);              //打开回显
-atStatus atCloseEcho(void);             //关闭回显
-atStatus atIsOpenEcho(void);            //是否打开了回显
-atStatus atGetWorkMode(void);           //获取工作模式
-atStatus atSetWorkMode(int mode);       //设置工作模式
-atStatus atGetPassword(char* pw);       //获取串口密码
-atStatus atSetPassword(char* pw);       //设置串口密码
-atStatus atGetBootMsg(char* msg);       //获取启动信息
-atStatus atSetBootMsg(char* msg);       //设置启动信息
-atStatus atGetNoDataRebootTime(uint16_t* time); //获取无数据重启时间
-atStatus atSetNoDataRebootTime(uint16_t time);  //设置无数据重启时间
-atStatus atGetSignalIntensity(char* msg);       //获取信号强度
-atStatus atGetNetworkInfo(char* info);          //获取网络信息
-atStatus atGetSystemConfig(char* info);         //获取设备配置
-atStatus atSetSystemConfig(char* info);         //设置设备配置
-atStatus atGetSoftworeVersion(char* info);      //获取内部软件版本号
-atStatus atGetFotaUpdatePollTime(uint16_t* time);   //获取fota升级轮询时间
-atStatus atSetFotaUpdatePollTime(uint16_t time);    //设置fota升级轮询时间
-atStatus atShell(char* shell);                      //运行linux shell命令
-atStatus atGetFirmwareVersion(char* info);          //获取固件版本号
-atStatus atGetSN(char* sn);             //获取SN号
-atStatus atGetICCID(char* iccid);       //获取ICCID号
-atStatus atGetIMEI(char* imei);         //获取IMEI号
-atStatus atGetBSPosition(char* position);   //获取基站位置
-atStatus atGetLocalIP(char* ip);        //获取本地IP
-atStatus atGetUART(char* info);         //获取串口信息
-atStatus atSetUART(char* info);         //设置串口信息
-atStatus atGetUARTPackTime(uint16_t* time); //获取串口打包时间
-atStatus atSetUARTPackTime(uint16_t time);  //设置串口打包时间
-atStatus atGetUARTPackLength(uint16_t* len);    //获取串口打包长度
-atStatus atSetUARTPackLength(uint16_t len);     //设置串口打包长度
-atStatus atGetAPN(char* apn);   //获取APN
-atStatus atSetAPN(char* apn);   //设置APN
-atStatus atGetSocketAParm(char* parm);  //获取SocketA参数
-atStatus atSetSocketAParm(char* parm);  //设置SocketA参数
-atStatus atGetSocketBParm(char* parm);  //获取SocketB参数
-atStatus atSetSocketBParm(char* parm);  //设置SocketB参数
+extern atStatus atIsInConfigStatus(void);
+extern atStatus atSwitchToConfigStaus(void);
+extern atStatus atSwitchToCommunicationStatus(void);
+extern atStatus atReboot(void);
+extern atStatus atRecovery(void);
+extern atStatus atClear(void);
+extern atStatus atShell(char* shell);
+
+extern atStatus atGetCmdEchoEnable(char* enable);
+extern atStatus atSetCmdEchoEnable(char* enable);
+extern atStatus atGetWorkMode(char* mode);
+extern atStatus atSetWorkMode(char* mode);
+extern atStatus atGetPassword(char* pw);
+extern atStatus atSetPassword(char* pw);
+extern atStatus atGetBootMessage(char* msg);
+extern atStatus atSetBootMessage(char* msg);
+extern atStatus atGetNoDataRebootTime(uint16_t* time);
+extern atStatus atSetNoDataRebootTime(uint16_t time);
+extern atStatus atGetSignalIntensity(char* msg);
+extern atStatus atGetNetworkInfo(char* info);
+extern atStatus atGetSystemConfig(char* info);
+extern atStatus atSetSystemConfig(char* info);
+extern atStatus atGetSoftworeVersion(char* info);
+extern atStatus atGetFotaUpdatePollTime(uint16_t* time);
+extern atStatus atSetFotaUpdatePollTime(uint16_t time);
+extern atStatus atGetFirmwareVersion(char* info);
+extern atStatus atGetSN(char* sn);
+extern atStatus atGetICCID(char* iccid);
+extern atStatus atGetIMEI(char* imei);
+extern atStatus atGetBSPosition(char* position);
+extern atStatus atGetLocalIP(char* ip);
+extern atStatus atGetUART(char* info);
+extern atStatus atSetUART(char* info);
+extern atStatus atGetUARTPackTime(uint16_t* time);
+extern atStatus atSetUARTPackTime(uint16_t time);
+extern atStatus atGetUARTPackLength(uint16_t* len);
+extern atStatus atSetUARTPackLength(uint16_t len);
+extern atStatus atGetAPN(char* apn);
+extern atStatus atSetAPN(char* apn);
+extern atStatus atGetSocketAParm(char* parm);
+extern atStatus atSetSocketAParm(char* parm);
+extern atStatus atGetSocketBParm(char* parm);
+extern atStatus atSetSocketBParm(char* parm);
+extern atStatus atGetSocketAEnable(char* enable);
+extern atStatus atSetSocketAEnable(char* enable);
+extern atStatus atGetSocketBEnable(char* enable);
+extern atStatus atSetSocketBEnable(char* enable);
+extern atStatus atGetSocketAKeepalive(char* keepalive);
+extern atStatus atSetSocketAKeepalive(char* keepalive);
+extern atStatus atGetSocketBKeepalive(char* keepalive);
+extern atStatus atSetSocketBKeepalive(char* keepalive);
+extern atStatus atGetSocketATCPSelect(char* tcpsl);
+extern atStatus atSetSocketATCPSelect(char* tcpsl);
+extern atStatus atGetSocketBTCPSelect(char* tcpsl);
+extern atStatus atSetSocketBTCPSelect(char* tcpsl);
+extern atStatus atGetSocketALinkStatus(char* lksta);
+extern atStatus atGetSocketBLinkStatus(char* lksta);
+extern atStatus atGetSocketAAutoRelinkTimeOut(uint16_t* time);
+extern atStatus atSetSocketAAutoRelinkTimeOut(uint16_t time);
+extern atStatus atGetSocketBAutoRelinkTimeOut(uint16_t* time);
+extern atStatus atSetSocketBAutoRelinkTimeOut(uint16_t time);
+extern atStatus atGetSocketAShortLinkTimeOut(uint16_t* time);
+extern atStatus atSetSocketAShortLinkTimeOut(uint16_t time);
+extern atStatus atGetSocketBShortLinkTimeOut(uint16_t* time);
+extern atStatus atSetSocketBShortLinkTimeOut(uint16_t time);
+extern atStatus atGetSocketIndicateDataSourceEnable(char* enable);
+extern atStatus atSetSocketIndicateDataSourceEnable(char* enable);
+extern atStatus atGetSocketEnable(char* enable);
+extern atStatus atSetSocketEnable(char* enable);
+extern atStatus atGetSocketRelinkTime(uint16_t* time);
+extern atStatus atSetSocketRelinkTime(uint16_t time);
+extern atStatus atGetRegisterPackageEnable(char* enable);
+extern atStatus atSetRegisterPackageEnable(char* enable);
+extern atStatus atGetRegisterPackageType(char* type);
+extern atStatus atSetRegisterPackageType(char* type);
+extern atStatus atGetRegisterPackageData(char* data);
+extern atStatus atSetRegisterPackageData(char* data);
+extern atStatus atGetRegisterType(char* type);
+extern atStatus atSetRegisterType(char* type);
+extern atStatus atGetRegisterType(char* type);
+extern atStatus atSetRegisterType(char* type);
+extern atStatus atGetCloudParm(char* parm);
+extern atStatus atSetCloudParm(char* parm);
+extern atStatus atGetUDCID(char* id);
+extern atStatus atSetUDCID(char* id);
+extern atStatus atGetHeartEnable(char* enable);
+extern atStatus atSetHeartEnable(char* enable);
+extern atStatus atGetHeartData(char* data);
+extern atStatus atSetHeartData(char* data);
+extern atStatus atGetHeartType(char* type);
+extern atStatus atSetHeartType(char* type);
+extern atStatus atGetHeartTime(uint16_t* time);
+extern atStatus atSetHeartTime(uint16_t time);
+extern atStatus atGetHTTPDType(char* type);
+extern atStatus atSetHTTPDType(char* type);
+extern atStatus atGetHTTPDUrl(char* url);
+extern atStatus atSetHTTPDUrl(char* url);
+extern atStatus atGetHTTPDServerParm(char* parm);
+extern atStatus atSetHTTPDServerParm(char* parm);
+extern atStatus atGetHTTPDRequestHead(char* head);
+extern atStatus atSetHTTPDRequestHead(char* head);
+extern atStatus atGetHTTPDTimeout(uint16_t* time);
+extern atStatus atSetHTTPDTimeout(uint16_t time);
+extern atStatus atGetHTTPDFilterHeadEnable(char* enable);
+extern atStatus atSetHTTPDFilterHeadEnable(char* enable);
+extern atStatus atSendMessageSM(char* msg);
+extern atStatus atSendMessageCISMS(char* msg);
+extern atStatus atGetModbusEnable(char* enable);
+extern atStatus atSetModbusEnable(char* enable);
+extern atStatus atGetCurrentTime(char* time);
 
 ```
 ## 联系方式
