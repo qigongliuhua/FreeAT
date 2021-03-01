@@ -5,8 +5,9 @@
 #include "atcmd.h"
 #include "at.h"
 #include "usart.h"
+#include "cmsis_os.h"
 
-#define athuart huart3
+
 
 #define USE_DEBUG
 
@@ -35,10 +36,10 @@ static void atprintf(char* str, ...)
 }
 #endif
 
-#define ERR(msg, ...) atprintf("[AT][ERROR][%s]" msg "\n", __func__, ##__VA_ARGS__)
-#define INFO(msg, ...) atprintf("[AT][INFO][%s]" msg "\n", __func__, ##__VA_ARGS__)
+#define ERR(msg, ...) atprintf("[AT][ERROR][%s]" msg "\n\r", __func__, ##__VA_ARGS__)
+#define INFO(msg, ...) atprintf("[AT][INFO][%s]" msg "\n\r", __func__, ##__VA_ARGS__)
 
-#define Delayms(time)  HAL_Delay(time)
+#define Delayms(time)  osDelay(time)
 
 #define InitBuffer(size) uint8_t buf[size];\
                         uint32_t buf_len = size
@@ -84,7 +85,7 @@ static void atprintf(char* str, ...)
     {\
         temp = &temp[strlen(tag)];\
         strncpy(value, temp, len);\
-        value[strlen(value)-4] == '\0';\
+        value[strlen(value)-4] = '\0';\
         INFO("%s:%s", info, value);\
         return AT_OK;\
     }\
@@ -181,6 +182,17 @@ atStatus atReboot(void)
     Receive(buf_len);
     AssertExist("OK");
     Delayms(20000);
+    INFO("success");
+    return AT_OK;
+}
+
+atStatus atRebootB(void)
+{
+    InitBuffer(BUF_SIZE);
+    Transmit(Strcat(CMD_AT_Z,"\n"));
+    Receive(buf_len);
+    AssertExist("OK");
+    Delayms(10000);
     INFO("success");
     return AT_OK;
 }

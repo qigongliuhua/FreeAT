@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "FreeRTOS.h"
 
+#define athuart huart3
+
 #define AT_OK       0
 #define AT_ERR      1
 typedef int atStatus;
@@ -12,6 +14,7 @@ extern atStatus atIsInConfigStatus(void);
 extern atStatus atSwitchToConfigStaus(void);
 extern atStatus atSwitchToCommunicationStatus(void);
 extern atStatus atReboot(void);
+extern atStatus atRebootB(void);
 extern atStatus atRecovery(void);
 extern atStatus atClear(void);
 extern atStatus atShell(char* shell);
